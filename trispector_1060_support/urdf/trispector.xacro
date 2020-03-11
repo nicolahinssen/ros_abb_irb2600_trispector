@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="trispector" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find trispector_1060_support)/urdf/trispector_macro.xacro" />
+  <xacro:trispector prefix="" />
+</robot>

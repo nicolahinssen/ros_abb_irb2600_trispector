@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:macro name="trispector" params="prefix">
+
+    <!-- Links -->
+    <link name="${prefix}eff_frame"/>
+
+    <link name="${prefix}trispector">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+              <mesh filename="package://trispector_1060_support/meshes/visual/trispector_with_plate.stl" />
+            </geometry>
+            <material name="Blue">
+              <color rgba="0.35 0.69 0.98 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://trispector_1060_support/meshes/collision/trispector_with_plate_bounding_box.stl" />
+            </geometry>
+        </collision>
+        <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0" />
+    </link>
+
+    <joint name="${prefix}eff_frame_to_trispector" type="fixed">
+        <parent link="eff_frame" />
+        <child link="trispector" />
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    </joint>
+
+    <link name="${prefix}tcp" />
+
+    <joint name="${prefix}joint_tcp" type="fixed">
+        <origin xyz="0.088 0.0 0.075" rpy="1.5708 0 1.5708" />
+        <parent link="${prefix}trispector" />
+        <child link="${prefix}tcp" />
+    </joint>
+
+    <link name="${prefix}scan_area_origin" type="fixed" />
+
+    <joint name="${prefix}joint_scan_area_origin" type="fixed">
+        <origin xyz="0.149 0.0 -0.04225" rpy="-1.5708 0 -1.5708" />
+        <parent link="${prefix}tcp" />
+        <child link="${prefix}scan_area_origin" />
+    </joint>
+
+    <link name="${prefix}scan_area">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+              <mesh filename="package://trispector_1060_support/meshes/visual/trispector_scan_area.stl" />
+            </geometry>
+            <material name="Grey">
+              <color rgba="235.0 235.0 235.0 0.3" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+        <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0" />
+
+    </link>
+
+    <link name="${prefix}laser_area">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+              <mesh filename="package://trispector_1060_support/meshes/visual/trispector_laser_area.stl" />
+            </geometry>
+            <material name="Red">
+              <color rgba="200.0 0.0 0.0 0.4" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+        <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0" />
+
+    </link>
+
+    <joint name="${prefix}origin_to_scan_area" type="fixed">
+        <parent link="scan_area_origin" />
+        <child link="scan_area" />
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    </joint>
+
+    <joint name="${prefix}origin_to_laser_area" type="fixed">
+        <parent link="scan_area_origin" />
+        <child link="laser_area" />
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    </joint>
+
+    </xacro:macro>
+</robot>
