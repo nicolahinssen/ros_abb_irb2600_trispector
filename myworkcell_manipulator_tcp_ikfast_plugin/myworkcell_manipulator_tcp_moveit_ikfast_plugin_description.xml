@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<library path="lib/libmyworkcell_manipulator_tcp_moveit_ikfast_plugin">
+  <class base_class_type="kinematics::KinematicsBase" name="myworkcell_manipulator_tcp/IKFastKinematicsPlugin" type="myworkcell_manipulator_tcp::IKFastKinematicsPlugin">
+    <description>IKFast61 plugin for closed-form kinematics of myworkcell manipulator_tcp</description>
+  </class>
+</library>
