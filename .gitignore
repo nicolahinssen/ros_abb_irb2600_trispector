@@ -1,2 +1,5 @@
-universal_robot
-industrial_core
+abb/*
+abb_industrial/*
+descartes/*
+industrial_core/*
+universal_robot/*
