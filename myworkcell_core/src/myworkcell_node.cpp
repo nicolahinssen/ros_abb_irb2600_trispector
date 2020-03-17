@@ -2,13 +2,18 @@
 #include <myworkcell_core/LocalizePart.h>
 #include <tf/tf.h>
 #include <moveit/move_group_interface/move_group_interface.h>
+#include <actionlib/client/simple_action_client.h>
+#include <control_msgs/FollowJointTrajectoryAction.h>
+#include <myworkcell_core/PlanCartesianPath.h>
 
 class ScanNPlan
 {
 public:
-  ScanNPlan(ros::NodeHandle& nh)
+  ScanNPlan(ros::NodeHandle& nh) : ac_("joint_trajectory_action", true)
   {
     vision_client_ = nh.serviceClient<myworkcell_core::LocalizePart>("localize_part");
+    cartesian_client_ = nh.serviceClient<myworkcell_core::PlanCartesianPath>("plan_path");
+
   }
 
   void start(const std::string& base_frame)
@@ -34,65 +39,45 @@ public:
     move_group.setPoseTarget(move_target);
     move_group.move();
 
-    move_target.position.x -= 1.00;
-    move_target.position.y -= 0.40;
-    move_target.position.z -= 0.60;
+    // Cartesian Descartes
 
-    move_group.setPoseTarget(move_target);
-    move_group.move();
+    myworkcell_core::PlanCartesianPath cartesian_srv;
+    cartesian_srv.request.pose = move_target;
+    if (!cartesian_client_.call(cartesian_srv))
+    {
+      ROS_ERROR("Could not plan for path");
+      return;
+    }
 
-    // Cartesian
-    std::vector<geometry_msgs::Pose> waypoints;
+    // Execute Descartes path
+    ROS_INFO("Got path, executing");
+    control_msgs::FollowJointTrajectoryGoal goal;
+    goal.trajectory = cartesian_srv.response.trajectory;
 
-    move_target.position.x += 1.60;
-    waypoints.push_back(move_target);
-
-    move_target.position.x -= 1.60;
-    waypoints.push_back(move_target);
-
-    moveit::planning_interface::MoveGroupInterface::Plan move_plan;
-    moveit_msgs::RobotTrajectory trajectory;
-
-    const double jump_threshold = 0.20;
-    const double eef_step = 0.10;
-    double fraction = move_group.computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory);
-
-    ROS_INFO("Computing cartesian path... (%.2f%% achieved)", fraction * 100.0);
-
-    sleep(5.0);
-
-    move_plan.trajectory_ = trajectory;
-    move_group.execute(move_plan);
-
-//    int i;
-//    for(i = 0; i <= 100; i++) {
-//      move_target.position.x += 1.60;
-//      move_group.setPoseTarget(move_target);
-//      move_group.move();
-//
-//      move_target.position.x -= 1.60;
-//      move_group.setPoseTarget(move_target);
-//      move_group.move();
-//    }
+    ac_.sendGoal(goal);
+    ac_.waitForResult();
+    ROS_INFO("Done");
   }
 
 private:
   // Planning components
   ros::ServiceClient vision_client_;
+  ros::ServiceClient cartesian_client_;
+  actionlib::SimpleActionClient<control_msgs::FollowJointTrajectoryAction> ac_;
+
 };
 
 int main(int argc, char **argv)
 {
   ros::init(argc, argv, "myworkcell_node");
-  ros::AsyncSpinner async_spinner(1);
-  async_spinner.start();
   ros::NodeHandle nh;
   ros::NodeHandle private_node_handle ("~");
-
+  ros::AsyncSpinner async_spinner(1); 
+  async_spinner.start();
+  
+  ROS_INFO("ScanNPlan node has been initialized");
   std::string base_frame;
   private_node_handle.param<std::string>("base_frame", base_frame, "world");
-
-  ROS_INFO("ScanNPlan node has been initialized");
 
   ScanNPlan app(nh);
 

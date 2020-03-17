@@ -52,13 +52,12 @@ public:
   bool initDescartes()
   {
     // Create a robot model
-    descartes_core::RobotModelPtr model (new descartes_moveit::MoveitStateAdapter);
-    // model_ = boost::make_shared<ur5_demo_descartes::UR5RobotModel>();
-    
+    model_ = boost::make_shared<descartes_moveit::IkFastMoveitStateAdapter>();
+
     // Define the relevant "frames"
     const std::string robot_description = "robot_description";
     const std::string group_name = "manipulator_tcp";
-    const std::string world_frame = "world"; // Frame in which tool poses are expressed
+    const std::string world_frame = "world";
     const std::string tcp_frame = "tcp";
 
     // Using the desired frames, let's initialize Descartes
@@ -67,6 +66,8 @@ public:
       ROS_WARN("Descartes RobotModel failed to initialize");
       return false;
     }
+
+    model_->setCheckCollisions(true); // Let's turn on collision checking.
 
     if (!planner_.initialize(model_))
     {
@@ -95,12 +96,14 @@ public:
     // Step 4: Plan with descartes
     if (!planner_.planPath(path))
     {
+      ROS_ERROR("Could not solve for a valid path");
       return false;
     }
 
     std::vector<descartes_core::TrajectoryPtPtr> result;
     if (!planner_.getPath(result))
     {
+      ROS_ERROR("Could not retrieve path");
       return false;
     }
 
@@ -118,22 +121,29 @@ public:
 
     // We assume that our path is centered at (0, 0, 0), so let's define the
     // corners of the AR marker
-    const double side_length = 0.08; // All units are in meters (M)
+    const double side_length = 0.8; // All units are in meters (M)
     const double half_side = side_length / 2.0;
     const double step_size = 0.02;
 
     Eigen::Vector3d top_left (-half_side, half_side, 0);
     Eigen::Vector3d bot_left (-half_side, -half_side, 0);
+    Eigen::Vector3d bot_right (half_side, -half_side, 0);
+    Eigen::Vector3d top_right (half_side, half_side, 0);
 
     // Descartes requires you to guide it in how dense the points should be,
     // so you have to do your own "discretization".
     // NOTE that the makeLine function will create a sequence of points inclusive
     // of the start and exclusive of finish point, i.e. line = [start, stop)
     
-    // TODO: Add the rest of the cartesian path
     auto segment1 = makeLine(top_left, bot_left, step_size);
+    auto segment2 = makeLine(bot_left, bot_right, step_size);
+    auto segment3 = makeLine(bot_right, top_right, step_size);
+    auto segment4 = makeLine(top_right, top_left, step_size);
 
     path.insert(path.end(), segment1.begin(), segment1.end());
+    path.insert(path.end(), segment2.begin(), segment2.end());
+    path.insert(path.end(), segment3.begin(), segment3.end());
+    path.insert(path.end(), segment4.begin(), segment4.end());
 
     return path;
   }
@@ -149,8 +159,7 @@ public:
 
     for (auto& point : path)
     {
-      // TODO: make a Descartes "cartesian" point with some kind of constraints
-      descartes_core::TrajectoryPtPtr pt = makeTolerancedCartesianPoint(/* TODO: what pose? */);
+      descartes_core::TrajectoryPtPtr pt = makeTolerancedCartesianPoint(ref * point);
       descartes_path.push_back(pt);
     }
     return descartes_path;
@@ -160,7 +169,7 @@ public:
   {
     using namespace descartes_core;
     using namespace descartes_trajectory;
-    return TrajectoryPtPtr( /* TODO: Specific point constructor here */ );
+    return TrajectoryPtPtr( new AxialSymmetricPt(pose, M_PI/2.0, AxialSymmetricPt::Z_AXIS) );
   }
 
   // HELPER
@@ -171,8 +180,7 @@ public:
     return names;
   }
 
-
-  boost::shared_ptr<ur5_demo_descartes::UR5RobotModel> model_;
+  boost::shared_ptr<descartes_moveit::IkFastMoveitStateAdapter> model_;
   descartes_planner::DensePlanner planner_;
   ros::ServiceServer server_;
   ros::NodeHandle nh_;
@@ -185,6 +193,6 @@ int main(int argc, char** argv)
   ros::NodeHandle nh;
   CartesianPlanner planner (nh);
 
-  ROS_INFO("Cartesian planning node starting");
+  ROS_INFO("Cartesian planning node starting"); 
   ros::spin();
 }

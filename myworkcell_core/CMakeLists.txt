@@ -19,6 +19,7 @@ find_package(catkin REQUIRED COMPONENTS
   descartes_utilities
   descartes_moveit
   eigen_conversions
+  trajectory_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -65,6 +66,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_service_files(
   FILES
   LocalizePart.srv
+  PlanCartesianPath.srv
 )
 
 ## Generate actions in the 'action' folder
@@ -78,6 +80,7 @@ add_service_files(
 generate_messages(
   DEPENDENCIES
   geometry_msgs  # Or other packages containing msgs
+  trajectory_msgs
 )
 
 ################################################
@@ -124,6 +127,7 @@ catkin_package(
     descartes_utilities
     descartes_moveit
     eigen_conversions
+    trajectory_msgs
 #  DEPENDS system_lib
 )
 
