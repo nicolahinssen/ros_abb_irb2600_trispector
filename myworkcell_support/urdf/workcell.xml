@@ -1,0 +1,6 @@
+<robot file="workcell.rounded.dae">
+        <Manipulator name="myworkcell">
+          <base>world</base>
+          <effector>part</effector>
+        </Manipulator>
+</robot>

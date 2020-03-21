@@ -1,8 +1,13 @@
 <launch>
+<param name="adv" value="false"/>
 <node name="fake_ar_publisher" pkg="fake_ar_publisher" type="fake_ar_publisher_node" output="screen" />
 <node name="vision_node" pkg="myworkcell_core" type="vision_node" output="screen" />
 
-<node name="myworkcell_node" pkg="myworkcell_core" type="myworkcell_node" output="screen">
+<node name="myworkcell_node" pkg="myworkcell_core" type="myworkcell_node" output="screen" unless="$(arg adv)">
+    <param name="base_frame" value="world" />
+</node>
+
+<node name="adv_myworkcell_node" pkg="myworkcell_core" type="adv_myworkcell_node" output="screen" if="$(arg adv)">
     <param name="base_frame" value="world" />
 </node>
 </launch>

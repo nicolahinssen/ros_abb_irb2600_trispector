@@ -121,7 +121,7 @@ public:
 
     // We assume that our path is centered at (0, 0, 0), so let's define the
     // corners of the AR marker
-    const double side_length = 0.8; // All units are in meters (M)
+    const double side_length = 0.08; // All units are in meters (M)
     const double half_side = side_length / 2.0;
     const double step_size = 0.02;
 

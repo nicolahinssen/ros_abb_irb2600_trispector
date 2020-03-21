@@ -1,0 +1,1 @@
+rosrun moveit_kinematics create_ikfast_moveit_plugin.py --search_mode=OPTIMIZE_MAX_JOINT --srdf_filename=myworkcell.srdf --robot_name_in_srdf=myworkcell --moveit_config_pkg=myworkcell_moveit_config myworkcell puzzle myworkcell_puzzle_ikfast_plugin world part /home/nicola/catkin_ws/src/myworkcell_puzzle_ikfast_plugin/src/myworkcell_puzzle_ikfast_solver.cpp

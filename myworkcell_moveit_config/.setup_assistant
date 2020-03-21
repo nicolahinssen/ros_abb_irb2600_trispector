@@ -8,4 +8,4 @@ moveit_setup_assistant_config:
   CONFIG:
     author_name: Nicola Hinssen
     author_email: nicola.hinssen@gmail.com
-    generated_timestamp: 1583487500
+    generated_timestamp: 1584795178

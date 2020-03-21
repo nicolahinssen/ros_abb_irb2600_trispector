@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<library path="lib/libabb_irb2600_manipulator_moveit_ikfast_plugin">
+  <class base_class_type="kinematics::KinematicsBase" name="abb_irb2600_manipulator/IKFastKinematicsPlugin" type="abb_irb2600_manipulator::IKFastKinematicsPlugin">
+    <description>IKFast61 plugin for closed-form kinematics of abb_irb2600 manipulator</description>
+  </class>
+</library>

@@ -1,32 +1,48 @@
 <?xml version="1.0" ?>
 <robot name="myworkcell" xmlns:xacro="http://ros.org/wiki/xacro">
 
-    <xacro:include filename="$(find abb_irb2600_support)/urdf/irb2600_12_165_macro.xacro" />
-    <xacro:include filename="$(find trispector_1060_support)/urdf/trispector_macro.xacro" />
+  <xacro:include filename="$(find abb_irb2600_support)/urdf/irb2600_12_165_macro.xacro" />
+  <!-- <xacro:include filename="$(find trispector_1060_support)/urdf/trispector_macro.xacro" /> -->
+  <xacro:include filename="$(find myworkcell_support)/urdf/grinder.xacro" />
+  <xacro:include filename="$(find myworkcell_support)/urdf/puzzle_mount.xacro" />    
 
-    <xacro:abb_irb2600_12_165 prefix="" />
-    <xacro:trispector prefix="" />
 
 <!-- Links -->
-    <link name="world" />
-    <link name="camera_frame" />
+  <link name="world" />
+  <link name="camera_frame" />
+
+  <xacro:abb_irb2600_12_165 prefix="" />
+  <!-- <xacro:trispector prefix="" /> -->
 
 <!-- Joints -->
-    <joint name="robot_to_eff" type="fixed">
-        <parent link="tool0" />
-        <child link="eff_frame" />
-        <origin xyz="0.0 0.0 0.0" rpy="-1.5708 -1.5708 0.0" />
-    </joint>
+  <joint name="world_to_camera" type="fixed">
+    <parent link="world" />
+    <child link="camera_frame" />
+    <origin xyz="-0.25 -0.5 1.25" rpy="0.0 3.14159 0.0" />
+  </joint>
 
-    <joint name="world_to_robot" type="fixed">
-        <parent link="world" />
-        <child link="base_link" />
-        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-    </joint>
+  <joint name="world_to_robot" type="fixed">
+    <parent link="world" />
+    <child link="base_link" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
 
-    <joint name="world_to_camera" type="fixed">
-        <parent link="world" />
-        <child link="camera_frame" />
-        <origin xyz="-0.25 -0.5 1.25" rpy="0.0 3.14159 0.0" />
-    </joint>
+  <joint name="world_to_grinder" type="fixed">
+    <parent link="world" />
+    <child link="grinder_frame" />
+    <origin xyz="0.0 -0.8 0.1" rpy="0 3.14159 0"/>
+  </joint>
+
+  <joint name="tool_to_puzzle" type="fixed">
+    <parent link="tool0" />
+    <child link="ee_mount" />
+    <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+  </joint>
+
+  <!-- <joint name="robot_to_eff" type="fixed">
+    <parent link="tool0" />
+    <child link="eff_frame" />
+    <origin xyz="0.0 0.0 0.0" rpy="-1.5708 -1.5708 0.0" />
+  </joint> -->
+
 </robot>

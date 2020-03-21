@@ -148,7 +148,7 @@ manipulator:
     - SPARStwo
   projection_evaluator: joints(joint_1,joint_2)
   longest_valid_segment_fraction: 0.005
-manipulator_tcp:
+puzzle:
   default_planner_config: None
   planner_configs:
     - SBL

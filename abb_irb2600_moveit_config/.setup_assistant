@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: abb_irb2600_support
+    relative_path: urdf/irb2600_12_165.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/abb_irb2600_12_165.srdf
+  CONFIG:
+    author_name: Nicola Hinssen
+    author_email: nicola.hinssen@gmail.com
+    generated_timestamp: 1584783769
