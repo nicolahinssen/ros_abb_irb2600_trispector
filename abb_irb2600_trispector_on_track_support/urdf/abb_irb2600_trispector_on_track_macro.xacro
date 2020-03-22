@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:macro name="abb_irb2600_trispector_on_track" params="prefix">
+
+    <xacro:include filename="$(find abb_irb2600_trispector_support)/urdf/abb_irb2600_trispector_macro.xacro" />
+    <xacro:include filename="$(find abb_irbt2005_support)/urdf/irbt2005_macro.xacro" />
+
+    <xacro:abb_irbt2005 prefix=""/>
+    <xacro:abb_irb2600_trispector prefix=""/>
+
+    <!-- links -->
+    <link name="world" />
+    <link name="camera_frame" />
+
+    <!-- Joints -->
+    <joint name="transporter_to_robot" type="fixed">
+      <origin xyz="-0.05 0 0.45" rpy="0 0 3.1416" />
+      <parent link="TRACK_1" />
+      <child link="base_link" />
+    </joint>
+
+    <joint name="world_to_track" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="world" />
+      <child link="track" />
+    </joint>
+
+    <joint name="world_to_camera" type="fixed">
+        <parent link="world" />
+        <child link="camera_frame" />
+        <origin xyz="-0.25 -0.5 1.25" rpy="0.0 3.14159 0.0" />
+    </joint>
+    </xacro:macro>
+
+</robot>

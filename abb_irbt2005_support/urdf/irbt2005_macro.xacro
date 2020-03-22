@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find abb_resources)/urdf/common_materials.xacro"/>
+
+  <xacro:macro name="abb_irbt2005" params="prefix">
+    <!-- links -->
+    <link name="${prefix}track">
+      <visual>
+        <origin xyz="0 0 0" rpy="1.5708 0 0" />
+        <geometry>
+          <mesh filename="package://abb_irbt2005_support/meshes/visual/irbt2005.stl" />
+        </geometry>
+        <xacro:material_abb_orange/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="1.5708 0 0" />
+        <geometry>
+          <mesh filename="package://abb_irbt2005_support/meshes/collision/irbt2005.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <link name="${prefix}TRACK_1">
+      <visual>
+        <origin xyz="0 0 0" rpy="1.5708 0 0" />
+        <geometry>
+          <mesh filename="package://abb_irbt2005_support/meshes/visual/carriage_standard.stl" />
+        </geometry>
+        <material name="">
+          <color rgba="0.5 0.5 0.5 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="1.5708 0 0" />
+        <geometry>
+          <mesh filename="package://abb_irbt2005_support/meshes/collision/carriage_standard.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <link name="${prefix}TRACK_2">
+      <visual>
+        <origin xyz="0 0 0" rpy="1.5708 0 0" />
+        <geometry>
+          <mesh filename="package://abb_irbt2005_support/meshes/visual/carriage_mirrored.stl" />
+        </geometry>
+        <material name="">
+          <color rgba="0.5 0.5 0.5 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="1.5708 0 0" />
+        <geometry>
+          <mesh filename="package://abb_irbt2005_support/meshes/collision/carriage_mirrored.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Joints -->
+    <joint name="${prefix}track_joint_1" type="prismatic">
+      <origin xyz="-0.40 -0.5 -0.5" rpy="0 0 0" />
+      <parent link="${prefix}track" />
+      <child link="${prefix}TRACK_1" />
+      <axis xyz="-1 0 0" />
+      <limit lower="0" upper="5.5" effort="0" velocity="1" />
+    </joint>
+    <joint name="${prefix}track_joint_2" type="prismatic">
+      <origin xyz="-7.25 -0.5 -0.5" rpy="0 0 0" />
+      <parent link="${prefix}track" />
+      <child link="${prefix}TRACK_2" />
+      <axis xyz="1 0 0" />
+      <limit lower="0" upper="5.5" effort="0" velocity="1" />
+    </joint>
+
+    <!-- ROS base_link to ABB World Coordinates transform -->
+    <link name="${prefix}track_base" />
+    <joint name="${prefix}track_base_link-base" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="${prefix}track" />
+      <child link="${prefix}track_base" />
+    </joint>
+  </xacro:macro>
+</robot>

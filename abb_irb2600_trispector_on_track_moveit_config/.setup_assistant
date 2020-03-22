@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: abb_irb2600_trispector_on_track_support
+    relative_path: urdf/abb_irb2600_trispector_on_track.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/abb_irb2600_trispector_on_track.srdf
+  CONFIG:
+    author_name: Nicola Hinssen
+    author_email: nicola.hinssen@gmail.com
+    generated_timestamp: 1584807173
