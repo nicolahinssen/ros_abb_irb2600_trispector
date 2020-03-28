@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+
+<robot name="abb_irb2600_12_165_gazebo" 
+    xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:include filename="$(find abb_irb2600_gazebo)/urdf/irb2600_12_165_macro.xacro" />
+
+    <xacro:abb_irb2600_12_165_gazebo prefix="" />
+
+    <!-- connect robot with world -->
+    <link name="world" />
+    <joint name="world_to_base_link_joint" type="fixed">
+        <parent link="world" />
+        <child link="base_link" />
+    </joint>
+
+    <!-- ros_control plugin -->
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
+            <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        </plugin>
+    </gazebo>
+    
+    <gazebo>
+    <include>
+      <uri>model://trispector_1060_support</uri>
+      <pose relative_to="link_6">0.0 0 0.0 0 1.5809 0</pose>
+    </include>
+    <joint name="trispector_joint" type="fixed">
+      <child>trispector</child>
+      <parent>link_6</parent>
+    </joint>
+    </gazebo>
+
+</robot>

@@ -3,6 +3,11 @@
 
     <xacro:macro name="trispector" params="prefix">
 
+    <xacro:macro name="inertia_formula" params="x y z mass">
+        <mass value="${mass}" />
+        <inertia ixx="${0.0833333 * mass * (y*y + z*z)}" ixy="0.0" ixz="0.0" iyy="${0.0833333 * mass * (x*x + z*z)}" iyz="0.0" izz="${0.0833333 * mass * (x*x + y*y)}" />
+    </xacro:macro>
+
     <!-- Links -->
     <link name="${prefix}eff_frame"/>
 
@@ -22,7 +27,12 @@
                 <mesh filename="package://trispector_1060_support/meshes/collision/trispector_with_plate_bounding_box.stl" />
             </geometry>
         </collision>
-        <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0" />
+        <inertial>
+            <origin rpy="0 0 0" xyz="0.043727 0.000030 0.073270" />
+            <!-- <xacro:inertia_formula mass="1.9" x="0.1" y="0.325" z="0.1" /> -->
+            <mass value="1.9" />
+            <inertia ixx="0.0204453777545" ixy="0" ixz="0" iyy="0.0057875650741" iyz="0" izz="0.0171436334722" />
+        </inertial>
     </link>
 
     <joint name="${prefix}eff_frame_to_trispector" type="fixed">
@@ -42,59 +52,59 @@
     <link name="${prefix}scan_area_origin" type="fixed" />
 
     <joint name="${prefix}joint_scan_area_origin" type="fixed">
-        <origin xyz="0.149 0.0 -0.04225" rpy="-1.5708 0 -1.5708" />
+        <origin xyz="-0.085 0.0 -0.045" rpy="-1.5708 -1.5708 -1.5708" /> <!-- 22.64 deg // 0.39514254 rad -->
         <parent link="${prefix}tcp" />
         <child link="${prefix}scan_area_origin" />
     </joint>
 
     <link name="${prefix}scan_area">
         <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-              <mesh filename="package://trispector_1060_support/meshes/visual/trispector_scan_area.stl" />
-            </geometry>
-            <material name="Grey">
-              <color rgba="235.0 235.0 235.0 0.3" />
-            </material>
-        </visual>
-        <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 0" rpy="0 0 0" /> 
             <geometry>
                 <box size="0.001 0.001 0.001"/>
             </geometry>
-        </collision>
-        <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0" />
-
+        </visual>
+        <!-- <collision>
+            <origin xyz="0 0.5 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.001 0.001 0.001"/>
+            </geometry>
+        </collision> -->
+        <!-- <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0" /> -->
     </link>
+
+    <link name="${prefix}laser_area_origin" type="fixed" />
+
+    <joint name="${prefix}joint_laser_area_origin" type="fixed">
+        <origin xyz="0.135 0.0 -0.045" rpy="-1.5708 -1.5708 -1.5708" />
+        <parent link="${prefix}tcp" />
+        <child link="${prefix}laser_area_origin" />
+    </joint>
 
     <link name="${prefix}laser_area">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-              <mesh filename="package://trispector_1060_support/meshes/visual/trispector_laser_area.stl" />
+                <box size="0.001 0.001 0.001"/>
             </geometry>
-            <material name="Red">
-              <color rgba="200.0 0.0 0.0 0.4" />
-            </material>
         </visual>
-        <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+        <!-- <collision>
+            <origin xyz="0 0 0.05" rpy="0 0 0" />
             <geometry>
                 <box size="0.001 0.001 0.001"/>
             </geometry>
-        </collision>
-        <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0" />
-
+        </collision> -->
+        <!-- <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0" /> -->
     </link>
 
     <joint name="${prefix}origin_to_scan_area" type="fixed">
         <parent link="scan_area_origin" />
         <child link="scan_area" />
-        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.3951 0.0" />
     </joint>
 
     <joint name="${prefix}origin_to_laser_area" type="fixed">
-        <parent link="scan_area_origin" />
+        <parent link="laser_area_origin" />
         <child link="laser_area" />
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
     </joint>

@@ -1,0 +1,120 @@
+<sdf version='1.7'>
+  <model name='trispector'>
+    <link name='eff_frame'>
+      <pose>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.043727 3e-05 0.07327 0 -0 0</pose>
+        <mass>1.9</mass>
+        <inertia>
+          <ixx>1.3e-05</ixx>
+          <ixy>-8.47033e-22</ixy>
+          <ixz>-8.67362e-19</ixz>
+          <iyy>2e-06</iyy>
+          <iyz>-8.47033e-22</iyz>
+          <izz>1.3e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='eff_frame_fixed_joint_lump__trispector_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://trispector_1060_support/meshes/collision/trispector_with_plate_bounding_box.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='eff_frame_fixed_joint_lump__trispector_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://trispector_1060_support/meshes/visual/trispector_with_plate.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='eff_frame_fixed_joint_lump__laser_area_visual_1'>
+        <pose>0.04575 0.135 0.075 -1.5708 0 4e-06</pose>
+        <geometry>
+          <box>
+            <size>0.001 0.001 0.001</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='eff_frame_fixed_joint_lump__scan_area_visual_2'>
+        <pose>0.04575 -0.075 0.075 -1.5708 0 4e-06</pose>
+        <geometry>
+          <box>
+            <size>0.001 0.001 0.001</size>
+          </box>
+        </geometry>
+      </visual>
+      <velocity_decay/>
+      <sensor name='laser_sensor' type='gpu_ray'>
+        <visualize>1</visualize>
+        <update_rate>40</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>720</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.15</min_angle>
+              <max_angle>0.15</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.1</min>
+            <max>1.091</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.003</stddev>
+          </noise>
+        </ray>
+        <plugin name='gazebo_ros_head_hokuyo_controller' filename='libgazebo_ros_gpu_laser.so'>
+          <topicName>/laser/scan</topicName>
+          <frameName>laser_link</frameName>
+        </plugin>
+        <pose>0.04575 0.135 0.075 -1.5708 0 4e-06</pose>
+      </sensor>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <sensor name='camera' type='camera'>
+        <always_on>1</always_on>
+        <update_rate>40</update_rate>
+        <visualize>1</visualize>
+        <camera>
+          <horizontal_fov>0.3</horizontal_fov>
+          <image>
+            <width>790</width>
+            <height>100</height>
+          </image>
+          <clip>
+            <near>0.291</near>
+            <far>1.091</far>
+          </clip>
+        </camera>
+        <plugin name='camera_controller' filename='libgazebo_ros_camera.so'>
+          <alwaysOn>1</alwaysOn>
+          <updateRate>0.0</updateRate>
+          <cameraName>trispector/camera1</cameraName>
+          <imageTopicName>image_raw</imageTopicName>
+          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+          <frameName>camera_link_optical</frameName>
+          <hackBaseline>0.0</hackBaseline>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+          <CxPrime>0</CxPrime>
+          <Cx>0.0</Cx>
+          <Cy>0.0</Cy>
+          <focalLength>0.0</focalLength>
+        </plugin>
+        <pose>0.04575 -0.075 0.075 -1.5708 0 4e-06</pose>
+      </sensor>
+    </link>
+  </model>
+</sdf>

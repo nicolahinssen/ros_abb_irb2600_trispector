@@ -38,8 +38,8 @@
     <child link="ee_mount" />
     <origin xyz="0 0 0" rpy="1.5708 0 0"/>
   </joint>
-
-  <!-- <joint name="robot_to_eff" type="fixed">
+<!-- 
+  <joint name="robot_to_eff" type="fixed">
     <parent link="tool0" />
     <child link="eff_frame" />
     <origin xyz="0.0 0.0 0.0" rpy="-1.5708 -1.5708 0.0" />

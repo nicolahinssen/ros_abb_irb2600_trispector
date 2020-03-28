@@ -1,0 +1,205 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+    <model name="trispector">
+        <static>true</static>
+
+        <link name="eff_frame">
+
+        </link>
+
+        <link name="trispector">
+            <pose>0 0 0 0 0 0</pose>
+            <inertial>
+                <mass>1.9</mass>
+                <inertia>
+                    <ixx>0.00001267970</ixx>
+                    <ixy>0.00000000167</ixy>
+                    <ixz>-0.00000018356</ixz>
+                    <iyy>0.00000182174</iyy>
+                    <iyz>-0.00000000478</iyz>
+                    <izz>0.00001283206</izz>
+                </inertia>
+            </inertial>
+
+            <collision name="collision">
+                <geometry>
+                    <mesh>
+                        <uri>model://trispector/meshes/trispector_with_plate_bounding_box.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+
+            <visual name="visual">
+                <geometry>
+                    <mesh>
+                        <uri>model://trispector/meshes/trispector_with_plate.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name="eff_frame_to_trispector" type="fixed">
+            <pose>0 0 0 0 0 0</pose>
+            <child>trispector</child>
+            <parent>eff_frame</parent>
+        </joint>
+
+        <link name="tcp">
+
+        </link>
+
+        <joint name="joint_tcp" type="fixed">
+            <pose>0.088 0.0 0.075 1.5708 0 1.5708</pose>
+            <child>tcp</child>
+            <parent>trispector</parent>
+        </joint>
+
+        <link name="scan_area_origin">
+
+        </link>
+
+        <joint name="joint_scan_area_origin" type="fixed">
+            <pose>0.149 0.0 -0.04225 1.5708 -0.7854 -1.5708</pose>
+            <child>scan_area_origin</child>
+            <parent>tcp</parent>
+        </joint>
+
+        <link name="scan_area">
+            <pose>0 0 0 0 0 0</pose>
+            <inertial>
+                <inertia>
+                    <ixx>0</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0</iyy>
+                    <iyz>0</iyz>
+                    <izz>0</izz>
+                </inertia>
+            </inertial>
+
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.001 0.001 0.001</size>
+                    </box>
+                </geometry>
+            </collision>
+
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.001 0.001 0.001</size>
+                    </box>
+                </geometry>
+            </visual>
+
+            <sensor name="camera" type="camera">
+                <always_on>1</always_on>
+                <update_rate>40</update_rate>
+                <visualize>1</visualize>
+                <camera>
+                    <horizontal_fov>0.3</horizontal_fov>                    <!-- atan(330 / (291 + 800)) -->
+                    <image>
+                        <width>790</width>
+                        <height>100</height>
+                    </image>
+                    <clip>
+                        <near>0.291</near>
+                        <far>1.091</far>                        <!-- 0.291 + 0.800 -->
+                    </clip>
+                </camera>
+                <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                    <alwaysOn>true</alwaysOn>
+                    <updateRate>0.0</updateRate>
+                    <cameraName>trispector/camera1</cameraName>
+                    <imageTopicName>image_raw</imageTopicName>
+                    <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+                    <frameName>camera_link_optical</frameName>
+                    <hackBaseline>0.0</hackBaseline>
+                    <distortionK1>0.0</distortionK1>
+                    <distortionK2>0.0</distortionK2>
+                    <distortionK3>0.0</distortionK3>
+                    <distortionT1>0.0</distortionT1>
+                    <distortionT2>0.0</distortionT2>
+                    <CxPrime>0</CxPrime>
+                    <Cx>0.0</Cx>
+                    <Cy>0.0</Cy>
+                    <focalLength>0.0</focalLength>
+                </plugin>
+            </sensor>
+        </link>
+
+        <link name="laser_area">
+            <pose>0 0 0 0 0 0</pose>
+            <inertial>
+                <inertia>
+                    <ixx>0</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0</iyy>
+                    <iyz>0</iyz>
+                    <izz>0</izz>
+                </inertia>
+            </inertial>
+
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.001 0.001 0.001</size>
+                    </box>
+                </geometry>
+            </collision>
+
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.001 0.001 0.001</size>
+                    </box>
+                </geometry>
+            </visual>
+
+            <sensor type="gpu_ray" name="laser_sensor">
+                <pose>0 0 0 0 0 0</pose>
+                <visualize>true</visualize>
+                <update_rate>40</update_rate>
+                <ray>
+                    <scan>
+                        <horizontal>
+                            <samples>720</samples>
+                            <resolution>1</resolution>
+                            <min_angle>-0.15</min_angle>
+                            <max_angle>0.15</max_angle>
+                        </horizontal>
+                    </scan>
+                    <range>
+                        <min>0.10</min>
+                        <max>1.091</max>
+                        <resolution>0.01</resolution>
+                    </range>
+                    <noise>
+                        <type>gaussian</type>
+                        <mean>0.0</mean>
+                        <stddev>0.003</stddev>
+                    </noise>
+                </ray>
+                <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
+                    <topicName>/laser/scan</topicName>
+                    <frameName>laser_link</frameName>
+                </plugin>
+            </sensor>
+        </link>
+
+        <joint name="origin_to_scan_area" type="fixed">
+            <pose>0 0 0 0 0 0</pose>
+            <child>scan_area</child>
+            <parent>scan_area_origin</parent>
+        </joint>
+
+        <joint name="origin_to_laser_area" type="fixed">
+            <pose>0 0 0 0 0 0</pose>
+            <child>laser_area</child>
+            <parent>scan_area_origin</parent>
+        </joint>
+        
+    </model>
+</sdf>

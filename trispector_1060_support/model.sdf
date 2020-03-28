@@ -1,0 +1,53 @@
+<sdf version='1.7'>
+  <model name='trispector'>
+    <link name='eff_frame'>
+      <pose>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.043727 3e-05 0.07327 0 -0 0</pose>
+        <mass>1.9</mass>
+        <inertia>
+          <ixx>1.3e-05</ixx>
+          <ixy>-8.47033e-22</ixy>
+          <ixz>-8.67362e-19</ixz>
+          <iyy>2e-06</iyy>
+          <iyz>-8.47033e-22</iyz>
+          <izz>1.3e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='eff_frame_fixed_joint_lump__trispector_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://trispector_1060_support/meshes/collision/trispector_with_plate_bounding_box.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='eff_frame_fixed_joint_lump__trispector_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://trispector_1060_support/meshes/visual/trispector_with_plate.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='eff_frame_fixed_joint_lump__laser_area_visual_1'>
+        <pose>0.04575 0.135 0.075 -1.5708 0 4e-06</pose>
+        <geometry>
+          <box>
+            <size>0.001 0.001 0.001</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='eff_frame_fixed_joint_lump__scan_area_visual_2'>
+        <pose>0.04575 -0.075 0.075 -1.5708 0 4e-06</pose>
+        <geometry>
+          <box>
+            <size>0.001 0.001 0.001</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>
