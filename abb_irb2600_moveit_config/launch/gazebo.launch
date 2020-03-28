@@ -2,7 +2,7 @@
 <launch>
   <arg name="paused" default="false"/>
   <arg name="gazebo_gui" default="true"/>
-  <arg name="urdf_path" default="$(find abb_irb2600_support)/urdf/irb2600_12_165.xacro"/>
+  <arg name="urdf_path" default="$(find abb_irb2600_gazebo_support)/urdf/irb2600_12_165.xacro"/>
 
   <!-- startup simulated world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">

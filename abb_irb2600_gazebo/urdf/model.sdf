@@ -19,7 +19,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://abb_irb2600_support/meshes/irb2600_12_165/collision/base_link.stl</uri>
+            <uri>model://abb_irb2600_gazebo_support/meshes/irb2600_12_165/collision/base_link.stl</uri>
           </mesh>
         </geometry>
         <surface>
@@ -36,7 +36,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://abb_irb2600_support/meshes/irb2600_12_165/visual/base_link.stl</uri>
+            <uri>model://abb_irb2600_gazebo_support/meshes/irb2600_12_165/visual/base_link.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -66,7 +66,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://abb_irb2600_support/meshes/irb2600_12_165/collision/link_1.stl</uri>
+            <uri>model://abb_irb2600_gazebo_support/meshes/irb2600_12_165/collision/link_1.stl</uri>
           </mesh>
         </geometry>
         <surface>
@@ -83,7 +83,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://abb_irb2600_support/meshes/irb2600_12_165/visual/link_1.stl</uri>
+            <uri>model://abb_irb2600_gazebo_support/meshes/irb2600_12_165/visual/link_1.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -126,7 +126,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://abb_irb2600_support/meshes/irb2600_12_165/collision/link_2.stl</uri>
+            <uri>model://abb_irb2600_gazebo_support/meshes/irb2600_12_165/collision/link_2.stl</uri>
           </mesh>
         </geometry>
         <surface>
@@ -143,7 +143,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://abb_irb2600_support/meshes/irb2600_12_165/visual/link_2.stl</uri>
+            <uri>model://abb_irb2600_gazebo_support/meshes/irb2600_12_165/visual/link_2.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -186,7 +186,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://abb_irb2600_support/meshes/irb2600_12_165/collision/link_3.stl</uri>
+            <uri>model://abb_irb2600_gazebo_support/meshes/irb2600_12_165/collision/link_3.stl</uri>
           </mesh>
         </geometry>
         <surface>
@@ -203,7 +203,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://abb_irb2600_support/meshes/irb2600_12_165/visual/link_3.stl</uri>
+            <uri>model://abb_irb2600_gazebo_support/meshes/irb2600_12_165/visual/link_3.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -246,7 +246,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://abb_irb2600_support/meshes/irb2600_12_165/collision/link_4.stl</uri>
+            <uri>model://abb_irb2600_gazebo_support/meshes/irb2600_12_165/collision/link_4.stl</uri>
           </mesh>
         </geometry>
         <surface>
@@ -263,7 +263,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://abb_irb2600_support/meshes/irb2600_12_165/visual/link_4.stl</uri>
+            <uri>model://abb_irb2600_gazebo_support/meshes/irb2600_12_165/visual/link_4.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -306,7 +306,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://abb_irb2600_support/meshes/irb2600_12_165/collision/link_5.stl</uri>
+            <uri>model://abb_irb2600_gazebo_support/meshes/irb2600_12_165/collision/link_5.stl</uri>
           </mesh>
         </geometry>
         <surface>
@@ -323,7 +323,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://abb_irb2600_support/meshes/irb2600_12_165/visual/link_5.stl</uri>
+            <uri>model://abb_irb2600_gazebo_support/meshes/irb2600_12_165/visual/link_5.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -366,7 +366,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://abb_irb2600_support/meshes/irb2600_12_165/collision/link_6.stl</uri>
+            <uri>model://abb_irb2600_gazebo_support/meshes/irb2600_12_165/collision/link_6.stl</uri>
           </mesh>
         </geometry>
         <surface>
@@ -383,7 +383,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://abb_irb2600_support/meshes/irb2600_12_165/visual/link_6.stl</uri>
+            <uri>model://abb_irb2600_gazebo_support/meshes/irb2600_12_165/visual/link_6.stl</uri>
           </mesh>
         </geometry>
       </visual>

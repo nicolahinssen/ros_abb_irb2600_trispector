@@ -35,7 +35,7 @@
   <!--   - replace these calls with appropriate robot-specific calls or launch files -->
   <group unless="$(arg sim)">
     <!--    <remap from="follow_joint_trajectory" to="joint_trajectory_action"/> -->
-    <include file="$(find abb_irb2600_support)/launch/robot_interface_download_irb2600_12_165.launch" >
+    <include file="$(find abb_irb2600_gazebo_support)/launch/robot_interface_download_irb2600_12_165.launch" >
       <arg name="robot_ip" value="$(arg robot_ip)"/>
       <!--      <arg name="min_payload" value="0.0"/> -->
       <!--      <arg name="max_payload" value="5.0"/> -->

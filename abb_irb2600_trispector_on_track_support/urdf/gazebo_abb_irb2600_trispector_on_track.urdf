@@ -105,7 +105,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://abb_irb2600_support/meshes/irb2600_12_165/visual/base_link.stl" />
+                <mesh filename="package://abb_irb2600_gazebo_support/meshes/irb2600_12_165/visual/base_link.stl" />
             </geometry>
             <material name="">
                 <color rgba="0.7372549 0.3490196 0.1607843 1" />
@@ -114,7 +114,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://abb_irb2600_support/meshes/irb2600_12_165/collision/base_link.stl" />
+                <mesh filename="package://abb_irb2600_gazebo_support/meshes/irb2600_12_165/collision/base_link.stl" />
             </geometry>
         </collision>
         
@@ -128,7 +128,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://abb_irb2600_support/meshes/irb2600_12_165/visual/link_1.stl" />
+                <mesh filename="package://abb_irb2600_gazebo_support/meshes/irb2600_12_165/visual/link_1.stl" />
             </geometry>
             <material name="">
                 <color rgba="0.7372549 0.3490196 0.1607843 1" />
@@ -137,7 +137,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://abb_irb2600_support/meshes/irb2600_12_165/collision/link_1.stl" />
+                <mesh filename="package://abb_irb2600_gazebo_support/meshes/irb2600_12_165/collision/link_1.stl" />
             </geometry>
         </collision>
         
@@ -151,7 +151,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://abb_irb2600_support/meshes/irb2600_12_165/visual/link_2.stl" />
+                <mesh filename="package://abb_irb2600_gazebo_support/meshes/irb2600_12_165/visual/link_2.stl" />
             </geometry>
             <material name="">
                 <color rgba="0.7372549 0.3490196 0.1607843 1" />
@@ -160,7 +160,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://abb_irb2600_support/meshes/irb2600_12_165/collision/link_2.stl" />
+                <mesh filename="package://abb_irb2600_gazebo_support/meshes/irb2600_12_165/collision/link_2.stl" />
             </geometry>
         </collision>
         
@@ -174,7 +174,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://abb_irb2600_support/meshes/irb2600_12_165/visual/link_3.stl" />
+                <mesh filename="package://abb_irb2600_gazebo_support/meshes/irb2600_12_165/visual/link_3.stl" />
             </geometry>
             <material name="">
                 <color rgba="0.7372549 0.3490196 0.1607843 1" />
@@ -183,7 +183,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://abb_irb2600_support/meshes/irb2600_12_165/collision/link_3.stl" />
+                <mesh filename="package://abb_irb2600_gazebo_support/meshes/irb2600_12_165/collision/link_3.stl" />
             </geometry>
         </collision>
         
@@ -197,7 +197,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://abb_irb2600_support/meshes/irb2600_12_165/visual/link_4.stl" />
+                <mesh filename="package://abb_irb2600_gazebo_support/meshes/irb2600_12_165/visual/link_4.stl" />
             </geometry>
             <material name="">
                 <color rgba="0.7372549 0.3490196 0.1607843 1" />
@@ -206,7 +206,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://abb_irb2600_support/meshes/irb2600_12_165/collision/link_4.stl" />
+                <mesh filename="package://abb_irb2600_gazebo_support/meshes/irb2600_12_165/collision/link_4.stl" />
             </geometry>
         </collision>
         
@@ -220,7 +220,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://abb_irb2600_support/meshes/irb2600_12_165/visual/link_5.stl" />
+                <mesh filename="package://abb_irb2600_gazebo_support/meshes/irb2600_12_165/visual/link_5.stl" />
             </geometry>
             <material name="">
                 <color rgba="0.7372549 0.3490196 0.1607843 1" />
@@ -229,7 +229,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://abb_irb2600_support/meshes/irb2600_12_165/collision/link_5.stl" />
+                <mesh filename="package://abb_irb2600_gazebo_support/meshes/irb2600_12_165/collision/link_5.stl" />
             </geometry>
         </collision>
         
@@ -243,7 +243,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://abb_irb2600_support/meshes/irb2600_12_165/visual/link_6.stl" />
+                <mesh filename="package://abb_irb2600_gazebo_support/meshes/irb2600_12_165/visual/link_6.stl" />
             </geometry>
             <material name="">
                 <color rgba="0.5 0.5 0.5 1" />
@@ -252,7 +252,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://abb_irb2600_support/meshes/irb2600_12_165/collision/link_6.stl" />
+                <mesh filename="package://abb_irb2600_gazebo_support/meshes/irb2600_12_165/collision/link_6.stl" />
             </geometry>
         </collision>
         

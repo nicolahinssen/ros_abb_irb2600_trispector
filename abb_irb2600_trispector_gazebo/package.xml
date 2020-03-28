@@ -52,7 +52,7 @@
 
   <exec_depend>trispector_1060_support</exec_depend>
   <exec_depend>abb_irb2600_gazebo</exec_depend>
-  <exec_depend>abb_irb2600_support</exec_depend>
+  <exec_depend>abb_irb2600_gazebo_support</exec_depend>
   <exec_depend>gazebo</exec_depend>
   <exec_depend>gazebo_ros</exec_depend>
   <exec_depend>gazebo_ros_control</exec_depend>

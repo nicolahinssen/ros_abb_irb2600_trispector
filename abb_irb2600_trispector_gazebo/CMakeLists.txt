@@ -8,7 +8,7 @@ project(abb_irb2600_trispector_gazebo)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  abb_irb2600_support
+  abb_irb2600_gazebo_support
 )
 
 ## System dependencies are found with CMake's conventions
@@ -103,7 +103,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES abb_irb2600_trispector_gazebo
-#  CATKIN_DEPENDS abb_irb2600_support
+#  CATKIN_DEPENDS abb_irb2600_gazebo_support
 #  DEPENDS system_lib
 )
 

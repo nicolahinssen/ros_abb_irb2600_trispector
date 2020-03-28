@@ -1,6 +1,6 @@
 moveit_setup_assistant_config:
   URDF:
-    package: abb_irb2600_support
+    package: abb_irb2600_gazebo_support
     relative_path: urdf/irb2600_12_165.xacro
     xacro_args: ""
   SRDF:

@@ -50,7 +50,7 @@
   <!--   <doc_depend>doxygen</doc_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
 
-  <exec_depend>abb_irb2600_support</exec_depend>
+  <exec_depend>abb_irb2600_gazebo_support</exec_depend>
   <exec_depend>gazebo</exec_depend>
   <exec_depend>gazebo_ros</exec_depend>
   <exec_depend>gazebo_ros_control</exec_depend>

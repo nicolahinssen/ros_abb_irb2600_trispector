@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-    <xacro:include filename="$(find abb_irb2600_support)/urdf/irb2600_12_165_macro.xacro" />
+    <xacro:include filename="$(find abb_irb2600_gazebo_support)/urdf/irb2600_12_165_macro.xacro" />
     <xacro:macro name="abb_irb2600_12_165_gazebo" params="prefix">
 
         <!-- get base ABB IRB2600 model -->
